@@ -1,35 +1,20 @@
 import React, {useEffect} from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  Image,
-  ImageBackground,
-  FlatList,
-  StatusBar,
-} from 'react-native';
+import {View, Text, TouchableOpacity, Image, StatusBar} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import userPhoto from '../../../public/images/userPhoto.png';
+// import userPhoto from '../../../public/images/userPhoto.png';
 import {useDispatch, useSelector} from 'react-redux';
-// import {useFocusEffect} from '@react-navigation/native';
-import {getUserById} from '../../redux/action/user';
 import {authLogout} from '../../redux/action/auth';
+import {getUserById} from '../../redux/action/user';
 
 const Profile = ({navigation}) => {
   const dispatch = useDispatch();
-  // const user = useSelector(state => state);
+  const userId = useSelector(state => state?.recipeDetail?.data?.users_id);
+  const user = useSelector(state => state?.userReducers?.data);
 
-  // useFocusEffect(
-  //   React.useCallback(() => {
-  //     dispatch(getUserById(data));
-  //   }, []),
-  // );
-
-  // useEffect(() => {
-  //   dispatch(getUserById());
-  // }, []);
-  // console.log(data);
+  useEffect(() => {
+    dispatch(getUserById(userId));
+  }, []);
 
   return (
     <View style={{backgroundColor: 'red', alignItems: 'center'}}>
@@ -52,7 +37,7 @@ const Profile = ({navigation}) => {
             justifyContent: 'center',
             alignItems: 'center',
           }}>
-          <Image source={userPhoto} />
+          <Image source={user?.photo_profile} />
           <Text
             style={{
               fontSize: 25,
@@ -60,7 +45,7 @@ const Profile = ({navigation}) => {
               color: '#FFFFFF',
               marginTop: 15,
             }}>
-            Mareta Lopeda
+            {user?.username}
           </Text>
         </View>
       </View>
@@ -162,7 +147,28 @@ const Profile = ({navigation}) => {
           </Text>
           <Icon name="chevron-right" style={{fontSize: 28, color: '#8C8C8C'}} />
         </TouchableOpacity>
-        <View style={{marginVertical: 2}}>
+        <TouchableOpacity
+          onPress={() => dispatch(authLogout())}
+          style={{
+            paddingHorizontal: 30,
+            paddingVertical: 20,
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+          }}>
+          <Ionicons name="exit-outline" color="#c91111" size={28} />
+          <Text
+            style={{
+              color: 'black',
+              fontSize: 20,
+              fontWeight: '500',
+              marginRight: 200,
+            }}>
+            Logout
+          </Text>
+          <Icon name="chevron-right" style={{fontSize: 28, color: '#8C8C8C'}} />
+        </TouchableOpacity>
+        {/* <View style={{marginVertical: 2}}>
           <TouchableOpacity onPress={() => dispatch(authLogout())}>
             <View
               style={{
@@ -192,7 +198,7 @@ const Profile = ({navigation}) => {
               />
             </View>
           </TouchableOpacity>
-        </View>
+        </View> */}
       </View>
     </View>
   );

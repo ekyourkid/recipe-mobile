@@ -1,24 +1,15 @@
 import React, {useState, useEffect} from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  Image,
-  Button,
-  ScrollView,
-} from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
-import cardPhoto from '../../../public/images/cardPopular.png';
+import {View, Text, TouchableOpacity, Image, ScrollView} from 'react-native';
 import BlueButton from '../../components/blueButton';
 import RedButton from '../../components/redButton';
 import axios from 'axios';
-import {AsyncStorage} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-
-const base_url = 'https://recipe-be-ekyourkids-projects.vercel.app/recipes';
+import {useSelector} from 'react-redux';
 
 const MyRecipe = () => {
   const [data, setData] = useState();
+  const recipeId = useSelector(state => state);
+  console.log(recipeId, 'RECIPE ID');
 
   const getData = async () => {
     try {
@@ -38,12 +29,10 @@ const MyRecipe = () => {
   }, []);
 
   const navigation = useNavigation();
-  const navigateToDetail = id => {
-    navigation.navigate('detailIngredients', {id});
-  };
 
   return (
-    <ScrollView style={{backgroundColor: '#dcdde1', height: 1000}}>
+    <ScrollView
+      style={{backgroundColor: '#dcdde1', height: 1000, paddingHorizontal: 15}}>
       <View
         style={{
           flexDirection: 'row',
@@ -61,12 +50,16 @@ const MyRecipe = () => {
       {data?.map((item, index) => {
         return (
           <TouchableOpacity
-            onPress={() => navigateToDetail(item.id)}
+            key={index}
+            onPress={() =>
+              navigation.navigate('DetailIngredients', {id: item.id})
+            }
             style={{
               marginHorizontasl: 17,
               backgroundColor: 'white',
               borderRadius: 20,
               marginVertical: 10,
+              padding: 5,
             }}>
             <View
               style={{
@@ -99,22 +92,6 @@ const MyRecipe = () => {
                 <Text style={{fontSize: 20, fontWeight: '400', color: 'black'}}>
                   {item?.category_id}
                 </Text>
-              </View>
-              <View
-                style={{
-                  width: 130,
-                  height: 120,
-                  justifyContent: 'space-evenly',
-                  alignItems: 'center',
-                }}>
-                <BlueButton
-                  text={'Edit'}
-                  onPress={() => navigation.navigate('')}
-                />
-                <RedButton
-                  text={'Delete'}
-                  onPress={() => navigation.navigate('')}
-                />
               </View>
             </View>
           </TouchableOpacity>

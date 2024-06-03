@@ -3,18 +3,16 @@ import axios from 'axios';
 
 const base_url = 'https://recipe-be-ekyourkids-projects.vercel.app';
 
-export const getMenu = () => async (dispatch, getState) => {
+export const GetRecipe = () => async (dispatch, getState) => {
   try {
-    dispatch({type: 'GET_MENU_PENDING'});
+    dispatch({type: 'GET_RECIPE_PENDING'});
 
-    const res = await axios.get(base_url + '/recipe');
-    console.log('res');
+    const res = await axios.get(base_url + '/recipes');
     console.log(res);
-
-    dispatch({type: 'GET_MENU_SUCCESS', payload: res.data.data});
+    dispatch({type: 'GET_RECIPE_SUCCESS', payload: res.data.data});
   } catch (err) {
     console.log(err?.message ? err.message : err);
-    dispatch({type: 'GET_MENU_ERROR'});
+    dispatch({type: 'GET_RECIPE_ERROR'});
   }
 };
 
@@ -44,28 +42,27 @@ export const postMenu =
     }
   };
 
-export const deleteMenu = (id, navigation) => async (dispatch, getState) => {
-  try {
-    dispatch({type: 'DELETE_MENU_PENDING'});
-    let token = getState().auth.data.token;
+export const DeleteRecipe =
+  (id, token, navigation) => async (dispatch, getState) => {
+    try {
+      dispatch({type: 'DELETE_RECIPE_PENDING'});
 
-    const res = await axios.delete(`${base_url}/recipe/${id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+      const res = await axios.delete(`${base_url}/recipes/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
-    dispatch({type: 'DELETE_MENU_SUCCESS', payload: res.data.data});
-    navigation.goBack();
-  } catch (err) {
-    console.log(err?.message ? err.message : err);
-    // dispatch({ type: 'DELETE_MENU_ERROR' });
-    dispatch({
-      type: 'DELETE_MENU_ERROR',
-      payload: err?.response?.data?.message ?? 'delete menu error',
-    });
-  }
-};
+      dispatch({type: 'DELETE_RECIPE_SUCCESS', payload: res.data.data});
+      navigation.goBack();
+    } catch (err) {
+      console.log(err?.message ? err.message : err);
+      dispatch({
+        type: 'DELETE_RECIPE_ERROR',
+        payload: err?.response?.data?.message ?? 'delete menu error',
+      });
+    }
+  };
 
 export const GetRecipeDetail = id => async (dispatch, getState) => {
   try {

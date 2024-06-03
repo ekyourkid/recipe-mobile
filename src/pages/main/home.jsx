@@ -90,25 +90,6 @@ const HomePage = ({navigation}) => {
     getData();
   }, []);
 
-  // const renderPopularRecipe = ({item}) => (
-  //   <View
-  //     style={{alignItems: 'center', justifyContent: 'center', paddingLeft: 10}}>
-  //     <TouchableOpacity onPress={() => navigation.push('detailIngredients')}>
-  //       <ImageBackground
-  //         source={item.image}
-  //         style={{
-  //           width: 260,
-  //           height: 150,
-  //           justifyContent: 'flex-end',
-  //           padding: 10,
-  //         }}>
-  //         <Text style={{fontSize: 20, fontWeight: '500', color: 'white'}}>
-  //           {item.title}
-  //         </Text>
-  //       </ImageBackground>
-  //     </TouchableOpacity>
-  //   </View>
-  // );
   const renderSeparator = () => <View style={{width: 10}}></View>;
 
   const renderPopularForYou = ({item}) => (

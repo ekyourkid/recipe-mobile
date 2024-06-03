@@ -9,7 +9,6 @@ export const getUserById = id => async (dispatch, getState) => {
 
     const res = await axios.get(`${base_url}/users/${id}`);
     console.log(res, 'res user');
-
     dispatch({type: 'GET_USER_SUCCESS', payload: res.data.data});
   } catch (err) {
     console.log(err?.message ? err.message : err);

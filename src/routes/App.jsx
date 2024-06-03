@@ -50,6 +50,37 @@ function HomeScreen() {
   );
 }
 
+function UserRecipe() {
+  return (
+    <Stack.Navigator
+      initialRouteName="UserRecipe"
+      screenOptions={{
+        animation: 'none',
+      }}>
+      <Stack.Screen
+        name="MyRecipe"
+        component={MyRecipe}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Home"
+        component={HomePage}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="DetailIngredients"
+        component={DetailIngredients}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="EditMenu"
+        component={EditMenu}
+        options={{headerShown: false}}
+      />
+    </Stack.Navigator>
+  );
+}
+
 function AuthScreen() {
   return (
     <Stack.Navigator
@@ -84,23 +115,13 @@ function ProfileScreen() {
         options={{headerShown: false}}
       />
       <Stack.Screen
-        name="MyRecipe"
-        component={MyRecipe}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
         name="DetailIngredients"
         component={DetailIngredients}
         options={{headerShown: false}}
       />
       <Stack.Screen
-        name="EditMenu"
-        component={EditMenu}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="EditProfile"
-        component={EditProfile}
+        name="myRecipe"
+        component={MyRecipe}
         options={{headerShown: false}}
       />
     </Stack.Navigator>
@@ -147,12 +168,12 @@ function MainScreen() {
         }}
       />
       <Tab.Screen
-        name="EditMenu"
-        component={EditMenu}
+        name="UserRecipe"
+        component={UserRecipe}
         options={{
-          tabBarLabel: 'EditMenu',
+          tabBarLabel: 'UserRecipe',
           tabBarIcon: ({color}) => (
-            <Ionicons name="create-outline" color={color} size={25} />
+            <Ionicons name="restaurant-outline" color={color} size={25} />
           ),
         }}
       />

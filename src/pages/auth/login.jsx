@@ -99,7 +99,7 @@ const AuthLogin = () => {
             flexDirection: 'row',
             backgroundColor: '#F5F5F5',
             alignItems: 'center',
-            justifyContent: 'center',
+            paddingLeft: 20,
             borderRadius: 10,
             height: 60,
           }}>

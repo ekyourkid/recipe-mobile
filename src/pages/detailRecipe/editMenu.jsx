@@ -26,7 +26,7 @@ import {EditRecipe, GetRecipeDetail} from '../../redux/action/menu';
 const EditMenu = ({route, navigation}) => {
   const dispatch = useDispatch();
   const recipeDetail = useSelector(state => state?.recipeDetail?.data);
-  const recipeId = recipeDetail?.id;
+  const recipeId = useSelector(state => state.recipeDetail.data?.id);
   const tokenUser = useSelector(
     state => state?.authReducers?.data?.access_token,
   );
