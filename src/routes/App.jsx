@@ -16,6 +16,7 @@ import AuthRegist from '../pages/auth/register';
 import {useSelector} from 'react-redux';
 import MyRecipe from '../pages/detailRecipe/myRecipe';
 import EditProfile from '../pages/detailRecipe/editProfile';
+import EditUser from '../pages/detailRecipe/editUser';
 
 const Stack = createNativeStackNavigator();
 
@@ -115,8 +116,8 @@ function ProfileScreen() {
         options={{headerShown: false}}
       />
       <Stack.Screen
-        name="DetailIngredients"
-        component={DetailIngredients}
+        name="EditUser"
+        component={EditUser}
         options={{headerShown: false}}
       />
       <Stack.Screen

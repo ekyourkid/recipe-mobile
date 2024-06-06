@@ -1,7 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import {View, Text, TouchableOpacity, Image, ScrollView} from 'react-native';
-import BlueButton from '../../components/blueButton';
-import RedButton from '../../components/redButton';
 import axios from 'axios';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';

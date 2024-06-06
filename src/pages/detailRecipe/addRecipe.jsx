@@ -124,7 +124,7 @@ const AddRecipe = ({navigation}) => {
       <StatusBar translucent backgroundColor={'transparent'} />
       <View
         style={{
-          marginTop: 100,
+          marginTop: 70,
           justifyContent: 'center',
           alignItems: 'center',
         }}>
@@ -132,7 +132,7 @@ const AddRecipe = ({navigation}) => {
           Add Your Recipe
         </Text>
       </View>
-      <View style={{marginTop: 50}}>
+      <View style={{marginTop: 30}}>
         <View style={styles.inputContainer}>
           <Icon name="book-open" style={{fontSize: 30, color: '#8B8A8F'}} />
           <TextInput
@@ -159,42 +159,46 @@ const AddRecipe = ({navigation}) => {
             placeholder="Ingredients"
           />
         </View>
-        <Button title="Add photo" onPress={() => cameraLaunch()} />
         {photo ? (
-          <View style={{alignItems: 'center', paddingTop: 20}}>
-            <Image
-              style={{height: 100, width: 100}}
-              source={{uri: photo.uri}}
-            />
+          <View
+            style={{
+              alignItems: 'center',
+              marginTop: 10,
+              position: 'relative',
+              height: 120,
+            }}>
             <View
               style={{
                 flexDirection: 'row',
-                justifyContent: 'space-between',
+                justifyContent: 'flex-end',
+                width: 120,
+                zIndex: 1,
+                position: 'absolute',
+                right: 145,
               }}>
-              <Text
-                style={{
-                  width: '70%',
-                  fontFamily: 'Poppins-Medium',
-                  fontSize: 15,
-                  color: '#464646',
-                }}>
-                {photo.fileName.length > 15
-                  ? photo.fileName.substring(0, 15) + '...'
-                  : photo.fileName}
-              </Text>
               <TouchableOpacity
                 onPress={deletePhoto}
                 style={{
                   height: 30,
-                  width: 40,
+                  width: 30,
                   backgroundColor: '#ee5e5e',
                   justifyContent: 'center',
                   alignItems: 'center',
-                  borderRadius: 10,
+                  borderRadius: 20,
                 }}>
                 <Ionicons name="close-outline" color="white" size={20} />
               </TouchableOpacity>
             </View>
+            <Image
+              style={{
+                height: 100,
+                width: 100,
+                zIndex: 0,
+                top: 10,
+                borderRadius: 10,
+              }}
+              source={{uri: photo.uri}}
+            />
           </View>
         ) : (
           <View
@@ -202,7 +206,7 @@ const AddRecipe = ({navigation}) => {
               flexDirection: 'row',
               justifyContent: 'center',
               alignItems: 'center',
-              paddingTop: 20,
+              height: 100,
             }}>
             <Ionicons
               name="image-outline"
@@ -223,18 +227,18 @@ const AddRecipe = ({navigation}) => {
 
         <View
           style={{
-            width: '85%',
+            width: '100%',
             flexDirection: 'row',
             justifyContent: 'space-between',
             marginTop: 20,
           }}>
           <TouchableHighlight
             onPress={() => galleryLaunch()}
-            underlayColor={'#b89b1a'}
+            underlayColor={'#74E291'}
             style={{
               height: 50,
-              width: 140,
-              backgroundColor: '#EFC81A',
+              width: 170,
+              backgroundColor: '#59B4C3',
               borderRadius: 10,
               alignItems: 'center',
               justifyContent: 'center',
@@ -243,14 +247,14 @@ const AddRecipe = ({navigation}) => {
               style={{
                 width: '60%',
                 flexDirection: 'row',
-                justifyContent: 'space-between',
+                justifyContent: 'space-evenly',
                 alignItems: 'center',
               }}>
-              <Ionicons name="image-outline" color="white" size={20} />
+              <Ionicons name="image-outline" color="white" size={25} />
               <Text
                 style={{
                   fontFamily: 'Poppins-Medium',
-                  fontSize: 14,
+                  fontSize: 18,
                   color: 'white',
                   marginTop: 3,
                 }}>
@@ -260,27 +264,27 @@ const AddRecipe = ({navigation}) => {
           </TouchableHighlight>
           <TouchableHighlight
             onPress={() => cameraLaunch()}
-            underlayColor={'#b89b1a'}
+            underlayColor={'#74E291'}
             style={{
               height: 50,
-              width: 140,
-              backgroundColor: '#EFC81A',
+              width: 170,
+              backgroundColor: '#59B4C3',
               borderRadius: 10,
               alignItems: 'center',
               justifyContent: 'center',
             }}>
             <View
               style={{
-                width: '65%',
+                width: '60%',
                 flexDirection: 'row',
-                justifyContent: 'space-between',
+                justifyContent: 'space-evenly',
                 alignItems: 'center',
               }}>
-              <Ionicons name="camera-outline" color="white" size={20} />
+              <Ionicons name="camera-outline" color="white" size={25} />
               <Text
                 style={{
                   fontFamily: 'Poppins-Medium',
-                  fontSize: 14,
+                  fontSize: 18,
                   color: 'white',
                   marginTop: 3,
                 }}>
@@ -289,18 +293,31 @@ const AddRecipe = ({navigation}) => {
             </View>
           </TouchableHighlight>
         </View>
-
-        <View style={{}}>
+        <View
+          underlayColor={'#74E291'}
+          style={{
+            height: 40,
+            width: 'full',
+            backgroundColor: '#59B4C3',
+            borderRadius: 10,
+            justifyContent: 'center',
+            marginTop: 20,
+          }}>
           <Picker
             selectedValue={selectCategory}
-            style={{height: 20, color: 'black'}}
-            dropdownIconColor="black"
+            style={{
+              height: 20,
+              fontFamily: 'Poppins-Medium',
+              fontSize: 18,
+              color: 'white',
+            }}
+            dropdownIconColor="white"
             onValueChange={(itemValue, itemIndex) => {
               onChange('category_id', itemValue);
               setSelectCategory(itemValue);
             }}>
             <Picker.Item
-              label="Select category recipe"
+              label="Select Category Recipes"
               value={null}
               style={{color: '#aaaaaa'}}
             />
@@ -312,16 +329,19 @@ const AddRecipe = ({navigation}) => {
         <View style={{margin: 5, marginTop: 50}}>
           <TouchableHighlight
             underlayColor={'#b89b1a'}
-            style={styles.PostButton}
             onPress={() => postData()}>
             <Text
               style={{
                 fontFamily: 'Poppins-Medium',
                 fontSize: 16,
+                fontWeight: 700,
                 color: 'white',
-                backgroundColor: 'red',
+                backgroundColor: '#EFC81A',
+                borderRadius: 5,
+                textAlign: 'center',
+                padding: 15,
               }}>
-              Create Recipe
+              CREATE RECIPE
             </Text>
           </TouchableHighlight>
         </View>
@@ -343,6 +363,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-evenly',
     borderRadius: 10,
+    elevation: 2,
+    shadowColor: '#52006A',
   },
 });
 

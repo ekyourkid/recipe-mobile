@@ -12,22 +12,13 @@ import fotoLogin from '../../../public/images/walpaperLogin.png';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import YellowButton from '../../components/yellowButton';
 import WhiteButton from '../../components/whiteButton';
-// import axios from 'axios';
-// import AsyncStorage from '@react-native-async-storage/async-storage';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {authLogin} from '../../../src/redux/action/auth';
-// const base_url = 'https://recipe-be-ekyourkids-projects.vercel.app';
-// let headers = {
-//   headers: {
-//     'Content-Type': 'application/x-www-form-urlencoded',
-//   },
-// };
 
-const AuthLogin = () => {
+const AuthLogin = ({navigation}) => {
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
-  const auth = useSelector(state => state?.auth);
   const [inputData, setInputData] = useState({
     email: '',
     password: '',
@@ -40,39 +31,6 @@ const AuthLogin = () => {
   const PasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
-
-  // const authLogin = async () => {
-  //   if (!inputData.email || !inputData.password) {
-  //     return;
-  //   }
-  //   try {
-  //     let formData = new FormData();
-  //     formData.append('email', inputData.email);
-  //     formData.append('password', inputData.password);
-
-  //     let result = await axios({
-  //       method: 'post',
-  //       url: 'https://recipe-be-ekyourkids-projects.vercel.app/users/login',
-  //       headers: {
-  //         'Content-Type': 'application/x-www-form-urlencoded',
-  //       },
-  //       data: inputData,
-  //     });
-
-  //     await AsyncStorage.setItem('token', result?.data?.access_token);
-  //     await AsyncStorage.setItem('userId', result?.data?.data?.id);
-
-  //     if (result?.status === 201 || result?.status === 200) {
-  //       navigation.navigate('home');
-  //     }
-  //     console.log(result.status, 'ini result');
-  //   } catch (err) {
-  //     console.log(
-  //       err,
-  //       'An error occurred, please double check your email and password',
-  //     );
-  //   }
-  // };
 
   return (
     <View style={styles.container}>
@@ -124,7 +82,7 @@ const AuthLogin = () => {
           <TextInput
             style={styles.input}
             placeholder="password"
-            secureTextEntry
+            secureTextEntry={!showPassword}
             onChangeText={newValue => onChange('password', newValue)}
             name="password"
           />
@@ -146,9 +104,21 @@ const AuthLogin = () => {
           onPress={() => dispatch(authLogin(inputData))}
           isDisabled={!inputData.email || !inputData.password}
         />
-        <Text style={{marginTop: 30, fontWeight: 500}}>
-          Don't have an account? Sign Up
-        </Text>
+        <View style={{flexDirection: 'row'}}>
+          <Text style={{marginTop: 30, fontWeight: 500}}>
+            Don't have an account?
+          </Text>
+          <Text
+            style={{
+              marginTop: 30,
+              fontWeight: 500,
+              color: '#EFC81A',
+              paddingLeft: 5,
+            }}
+            onPress={() => navigation.navigate('Regist')}>
+            Sign Up
+          </Text>
+        </View>
       </View>
     </View>
   );
@@ -171,7 +141,7 @@ const styles = StyleSheet.create({
   },
   input: {
     width: 300,
-    color: '#C4C4C4',
+    color: 'black',
     borderRadius: 5,
     paddingHorizontal: 15,
     height: 40,

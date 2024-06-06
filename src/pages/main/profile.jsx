@@ -2,15 +2,15 @@ import React, {useEffect} from 'react';
 import {View, Text, TouchableOpacity, Image, StatusBar} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-// import userPhoto from '../../../public/images/userPhoto.png';
 import {useDispatch, useSelector} from 'react-redux';
 import {authLogout} from '../../redux/action/auth';
 import {getUserById} from '../../redux/action/user';
 
 const Profile = ({navigation}) => {
   const dispatch = useDispatch();
-  const userId = useSelector(state => state?.recipeDetail?.data?.users_id);
-  const user = useSelector(state => state?.userReducers?.data);
+  const userData = useSelector(state => state?.authReducers);
+  const userId = userData?.data?.data?.id;
+  const user = useSelector(state => state?.userReducers?.data?.data);
 
   useEffect(() => {
     dispatch(getUserById(userId));
@@ -37,7 +37,13 @@ const Profile = ({navigation}) => {
             justifyContent: 'center',
             alignItems: 'center',
           }}>
-          <Image source={user?.photo_profile} />
+          {user?.photo_profile ? (
+            <Image source={user?.photo_profile} />
+          ) : (
+            <Image
+              source={require('../../../public/images/default-photo.jpeg')}
+            />
+          )}
           <Text
             style={{
               fontSize: 25,
@@ -61,7 +67,7 @@ const Profile = ({navigation}) => {
           borderTopStartRadius: 30,
         }}>
         <TouchableOpacity
-          onPress={''}
+          onPress={() => navigation.navigate('EditUser')}
           style={{
             paddingHorizontal: 30,
             paddingVertical: 30,
@@ -151,7 +157,7 @@ const Profile = ({navigation}) => {
           onPress={() => dispatch(authLogout())}
           style={{
             paddingHorizontal: 30,
-            paddingVertical: 20,
+            paddingVertical: 30,
             flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'space-between',
@@ -168,37 +174,6 @@ const Profile = ({navigation}) => {
           </Text>
           <Icon name="chevron-right" style={{fontSize: 28, color: '#8C8C8C'}} />
         </TouchableOpacity>
-        {/* <View style={{marginVertical: 2}}>
-          <TouchableOpacity onPress={() => dispatch(authLogout())}>
-            <View
-              style={{
-                height: 60,
-                // backgroundColor: 'red',
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                padding: 15,
-              }}>
-              <View style={{flexDirection: 'row'}}>
-                <Ionicons name="exit-outline" color="#c91111" size={25} />
-                <Text
-                  style={{
-                    marginLeft: 20,
-                    fontSize: 15,
-                    color: '#c91111',
-                    fontFamily: 'Poppins-Medium',
-                  }}>
-                  Logout
-                </Text>
-              </View>
-              <Ionicons
-                name="chevron-forward-outline"
-                color="#c91111"
-                size={25}
-              />
-            </View>
-          </TouchableOpacity>
-        </View> */}
       </View>
     </View>
   );

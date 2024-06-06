@@ -14,17 +14,18 @@ import {
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {updateUser} from '../../redux/action/user';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import * as ImagePicker from 'react-native-image-picker';
+import {updateUser} from '../../redux/action/user';
 
-const EditProfile = ({route, navigation}) => {
+const EditProfile = ({navigation}) => {
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
-  const auth = useSelector(state => state.auth.data);
+  const auth = useSelector(state => state?.authReducers?.data);
+  const userId = auth?.data?.id;
   const [photo, setPhoto] = useState(null);
   const [inputData, setInputData] = useState({
-    full_name: '',
+    username: '',
     email: '',
     password: '',
   });
@@ -45,12 +46,12 @@ const EditProfile = ({route, navigation}) => {
 
   const updateData = async () => {
     let bodyData = new FormData();
-    bodyData.append('full_name', inputData.full_name);
+    bodyData.append('username', inputData.username);
     bodyData.append('email', inputData.email);
     bodyData.append('password', inputData.password);
     bodyData.append('photo', photoData);
 
-    dispatch(updateUser(route?.params.id, bodyData, navigation));
+    dispatch(updateUser(userId, bodyData, navigation));
   };
 
   const onChange = (key, value) => {
@@ -136,7 +137,7 @@ const EditProfile = ({route, navigation}) => {
       {auth?.data ? (
         <View>
           {/* Image */}
-          {auth?.data?.profile_picture ? (
+          {auth?.data?.photo ? (
             <ImageBackground
               source={{uri: auth?.data?.profile_picture}}
               resizeMode="cover"
@@ -259,11 +260,10 @@ const EditProfile = ({route, navigation}) => {
                 <View style={styles.searchBar}>
                   <Ionicons name="person-outline" color="#EFC81A" size={25} />
                   <TextInput
-                    onChangeText={newValue => onChange('full_name', newValue)}
+                    onChangeText={newValue => onChange('username', newValue)}
                     style={styles.searchInput}
-                    placeholder="Name"
+                    placeholder={auth?.data?.username}
                     placeholderTextColor="#C4C4C4"
-                    defaultValue={auth?.data?.full_name}
                   />
                 </View>
               </View>
@@ -275,9 +275,8 @@ const EditProfile = ({route, navigation}) => {
                   <TextInput
                     onChangeText={newValue => onChange('email', newValue)}
                     style={styles.searchInput}
-                    placeholder="Email"
                     placeholderTextColor="#C4C4C4"
-                    defaultValue={auth?.data?.email}
+                    placeholder={auth?.data?.email}
                   />
                 </View>
               </View>

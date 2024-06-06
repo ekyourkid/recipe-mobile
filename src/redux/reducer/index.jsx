@@ -7,6 +7,7 @@ import RecipeReducers from './getRecipe';
 import CreateRecipe from './createRecipe';
 import EditRecipeReducers from './editRecipe';
 import userReducers from './getUsers';
+import updateUser from './editUser';
 
 const rootReducer = combineReducers({
   authReducers,
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   CreateRecipe,
   EditRecipeReducers,
   userReducers,
+  updateUser,
 });
 
 export default rootReducer;

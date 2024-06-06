@@ -15,7 +15,6 @@ import {
   TouchableOpacity,
   View,
   Button,
-  ActivityIndicator,
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Icon from 'react-native-vector-icons/FontAwesome5';
@@ -144,7 +143,7 @@ const EditMenu = ({route, navigation}) => {
       <StatusBar translucent backgroundColor={'transparent'} />
       <View
         style={{
-          marginTop: 100,
+          marginTop: 70,
           justifyContent: 'center',
           alignItems: 'center',
         }}>
@@ -152,7 +151,7 @@ const EditMenu = ({route, navigation}) => {
           Edit Recipe
         </Text>
       </View>
-      <View style={{marginTop: 50}}>
+      <View style={{marginTop: 30}}>
         <View style={styles.inputContainer}>
           <Icon name="book-open" style={{fontSize: 30, color: '#8B8A8F'}} />
           <TextInput
@@ -179,42 +178,46 @@ const EditMenu = ({route, navigation}) => {
             placeholder={recipeDetail?.ingredient}
           />
         </View>
-        <Button title="Add photo" onPress={() => cameraLaunch()} />
         {photo ? (
-          <View style={{alignItems: 'center', paddingTop: 20}}>
-            <Image
-              style={{height: 100, width: 100}}
-              source={{uri: photo.uri}}
-            />
+          <View
+            style={{
+              alignItems: 'center',
+              marginTop: 20,
+              position: 'relative',
+              height: 120,
+            }}>
             <View
               style={{
                 flexDirection: 'row',
-                justifyContent: 'space-between',
+                justifyContent: 'flex-end',
+                width: 120,
+                zIndex: 1,
+                position: 'absolute',
+                right: 145,
               }}>
-              <Text
-                style={{
-                  width: '70%',
-                  fontFamily: 'Poppins-Medium',
-                  fontSize: 15,
-                  color: '#464646',
-                }}>
-                {photo.fileName.length > 15
-                  ? photo.fileName.substring(0, 15) + '...'
-                  : photo.fileName}
-              </Text>
               <TouchableOpacity
                 onPress={deletePhoto}
                 style={{
                   height: 30,
-                  width: 40,
+                  width: 30,
                   backgroundColor: '#ee5e5e',
                   justifyContent: 'center',
                   alignItems: 'center',
-                  borderRadius: 10,
+                  borderRadius: 20,
                 }}>
                 <Ionicons name="close-outline" color="white" size={20} />
               </TouchableOpacity>
             </View>
+            <Image
+              style={{
+                height: 100,
+                width: 100,
+                zIndex: 0,
+                top: 10,
+                borderRadius: 10,
+              }}
+              source={{uri: photo.uri}}
+            />
           </View>
         ) : (
           <View
@@ -222,7 +225,7 @@ const EditMenu = ({route, navigation}) => {
               flexDirection: 'row',
               justifyContent: 'center',
               alignItems: 'center',
-              paddingTop: 20,
+              height: 100,
             }}>
             <Ionicons
               name="image-outline"
@@ -243,7 +246,7 @@ const EditMenu = ({route, navigation}) => {
 
         <View
           style={{
-            width: '85%',
+            width: '100%',
             flexDirection: 'row',
             justifyContent: 'space-between',
             marginTop: 20,
@@ -253,8 +256,8 @@ const EditMenu = ({route, navigation}) => {
             underlayColor={'#b89b1a'}
             style={{
               height: 50,
-              width: 140,
-              backgroundColor: '#EFC81A',
+              width: 170,
+              backgroundColor: '#59B4C3',
               borderRadius: 10,
               alignItems: 'center',
               justifyContent: 'center',
@@ -263,14 +266,14 @@ const EditMenu = ({route, navigation}) => {
               style={{
                 width: '60%',
                 flexDirection: 'row',
-                justifyContent: 'space-between',
+                justifyContent: 'space-evenly',
                 alignItems: 'center',
               }}>
-              <Ionicons name="image-outline" color="white" size={20} />
+              <Ionicons name="image-outline" color="white" size={25} />
               <Text
                 style={{
                   fontFamily: 'Poppins-Medium',
-                  fontSize: 14,
+                  fontSize: 18,
                   color: 'white',
                   marginTop: 3,
                 }}>
@@ -283,24 +286,24 @@ const EditMenu = ({route, navigation}) => {
             underlayColor={'#b89b1a'}
             style={{
               height: 50,
-              width: 140,
-              backgroundColor: '#EFC81A',
+              width: 170,
+              backgroundColor: '#59B4C3',
               borderRadius: 10,
               alignItems: 'center',
               justifyContent: 'center',
             }}>
             <View
               style={{
-                width: '65%',
+                width: '60%',
                 flexDirection: 'row',
-                justifyContent: 'space-between',
+                justifyContent: 'space-evenly',
                 alignItems: 'center',
               }}>
-              <Ionicons name="camera-outline" color="white" size={20} />
+              <Ionicons name="camera-outline" color="white" size={25} />
               <Text
                 style={{
                   fontFamily: 'Poppins-Medium',
-                  fontSize: 14,
+                  fontSize: 18,
                   color: 'white',
                   marginTop: 3,
                 }}>
@@ -309,12 +312,24 @@ const EditMenu = ({route, navigation}) => {
             </View>
           </TouchableHighlight>
         </View>
-
-        <View style={{}}>
+        <View
+          style={{
+            height: 40,
+            width: 'full',
+            backgroundColor: '#59B4C3',
+            borderRadius: 10,
+            justifyContent: 'center',
+            marginTop: 20,
+          }}>
           <Picker
             selectedValue={selectCategory}
-            style={{height: 20, color: 'black'}}
-            dropdownIconColor="black"
+            style={{
+              height: 20,
+              fontFamily: 'Poppins-Medium',
+              fontSize: 18,
+              color: 'white',
+            }}
+            dropdownIconColor="white"
             onValueChange={(itemValue, itemIndex) => {
               onChange('category_id', itemValue);
               setSelectCategory(itemValue);
@@ -338,8 +353,12 @@ const EditMenu = ({route, navigation}) => {
               style={{
                 fontFamily: 'Poppins-Medium',
                 fontSize: 16,
+                fontWeight: 700,
                 color: 'white',
-                backgroundColor: 'red',
+                backgroundColor: '#EFC81A',
+                borderRadius: 5,
+                textAlign: 'center',
+                padding: 15,
               }}>
               Update Recipe
             </Text>

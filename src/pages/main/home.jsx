@@ -6,7 +6,6 @@ import {
   Text,
   TextInput,
   StyleSheet,
-  Button,
   Image,
   StatusBar,
   TouchableOpacity,
@@ -18,6 +17,7 @@ import group1 from '../../../public/images/Group1.png';
 import group2 from '../../../public/images/Group2.png';
 import group3 from '../../../public/images/Group3.png';
 import cardPhot from '../../../public/images/cardPopular.png';
+import {useSelector} from 'react-redux';
 
 const PopularList = [
   {
@@ -72,6 +72,7 @@ const PopularForYou = [
 
 const HomePage = ({navigation}) => {
   const [data, setData] = useState();
+  const userdata = useSelector(state => state);
 
   const getData = async () => {
     try {
