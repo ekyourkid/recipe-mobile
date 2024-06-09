@@ -41,13 +41,12 @@ const DetailPopular = ({navigation}) => {
         style={{
           flexDirection: 'row',
           alignItems: 'center',
-          justifyContent: 'space-between',
-          marginHorizontal: 50,
+          justifyContent: 'space-evenly',
           marginVertical: 50,
           width: 300,
         }}>
         <TouchableOpacity
-          onPress={''}
+          onPress={() => navigation.goBack()}
           style={{
             backgroundColor: '#F8F8FA',
             width: 40,

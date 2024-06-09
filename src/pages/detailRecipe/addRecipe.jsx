@@ -137,7 +137,7 @@ const AddRecipe = ({navigation}) => {
           <Icon name="book-open" style={{fontSize: 30, color: '#8B8A8F'}} />
           <TextInput
             style={{
-              width: 320,
+              width: 220,
               alignItems: 'center',
               justifyContent: 'center',
               fontSize: 20,
@@ -151,7 +151,7 @@ const AddRecipe = ({navigation}) => {
             multiline={true}
             numberOfLines={10}
             style={{
-              width: 400,
+              width: 300,
               fontSize: 20,
               paddingLeft: 10,
             }}
@@ -174,7 +174,7 @@ const AddRecipe = ({navigation}) => {
                 width: 120,
                 zIndex: 1,
                 position: 'absolute',
-                right: 145,
+                right: 100,
               }}>
               <TouchableOpacity
                 onPress={deletePhoto}
@@ -237,7 +237,7 @@ const AddRecipe = ({navigation}) => {
             underlayColor={'#74E291'}
             style={{
               height: 50,
-              width: 170,
+              width: 140,
               backgroundColor: '#59B4C3',
               borderRadius: 10,
               alignItems: 'center',
@@ -267,7 +267,7 @@ const AddRecipe = ({navigation}) => {
             underlayColor={'#74E291'}
             style={{
               height: 50,
-              width: 170,
+              width: 140,
               backgroundColor: '#59B4C3',
               borderRadius: 10,
               alignItems: 'center',

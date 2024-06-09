@@ -7,6 +7,7 @@ import {
   View,
   StatusBar,
   TouchableOpacity,
+  Button,
 } from 'react-native';
 import fotoLogin from '../../../public/images/walpaperLogin.png';
 import Icon from 'react-native-vector-icons/FontAwesome5';
@@ -41,7 +42,11 @@ const AuthLogin = ({navigation}) => {
       />
       <Image
         source={fotoLogin}
-        style={{width: 'full', height: 300, objectFit: 'cover'}}
+        style={{
+          width: 370,
+          height: 300,
+          objectFit: 'cover',
+        }}
       />
       <View style={styles.textContainer}>
         <Text style={{fontSize: 25, fontWeight: '600', color: '#EFC81A'}}>
@@ -74,13 +79,19 @@ const AuthLogin = ({navigation}) => {
             flexDirection: 'row',
             backgroundColor: '#F5F5F5',
             alignItems: 'center',
-            justifyContent: 'center',
             borderRadius: 10,
+            paddingLeft: 20,
             height: 60,
           }}>
           <Icon name="lock" style={{fontSize: 25, color: '#EFC81A'}} />
           <TextInput
-            style={styles.input}
+            style={{
+              width: 220,
+              color: 'black',
+              borderRadius: 5,
+              paddingHorizontal: 15,
+              height: 40,
+            }}
             placeholder="password"
             secureTextEntry={!showPassword}
             onChangeText={newValue => onChange('password', newValue)}

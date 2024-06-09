@@ -156,7 +156,7 @@ const EditMenu = ({route, navigation}) => {
           <Icon name="book-open" style={{fontSize: 30, color: '#8B8A8F'}} />
           <TextInput
             style={{
-              width: 320,
+              width: 220,
               alignItems: 'center',
               justifyContent: 'center',
               fontSize: 20,
@@ -170,7 +170,7 @@ const EditMenu = ({route, navigation}) => {
             multiline={true}
             numberOfLines={10}
             style={{
-              width: 400,
+              width: 300,
               fontSize: 20,
               paddingLeft: 10,
             }}
@@ -193,7 +193,7 @@ const EditMenu = ({route, navigation}) => {
                 width: 120,
                 zIndex: 1,
                 position: 'absolute',
-                right: 145,
+                right: 100,
               }}>
               <TouchableOpacity
                 onPress={deletePhoto}
@@ -256,7 +256,7 @@ const EditMenu = ({route, navigation}) => {
             underlayColor={'#b89b1a'}
             style={{
               height: 50,
-              width: 170,
+              width: 150,
               backgroundColor: '#59B4C3',
               borderRadius: 10,
               alignItems: 'center',
@@ -286,7 +286,7 @@ const EditMenu = ({route, navigation}) => {
             underlayColor={'#b89b1a'}
             style={{
               height: 50,
-              width: 170,
+              width: 150,
               backgroundColor: '#59B4C3',
               borderRadius: 10,
               alignItems: 'center',

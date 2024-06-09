@@ -17,7 +17,7 @@ const Profile = ({navigation}) => {
   }, []);
 
   return (
-    <View style={{backgroundColor: 'red', alignItems: 'center'}}>
+    <View style={{alignItems: 'center'}}>
       <StatusBar translucent backgroundColor={'transparent'} />
       <View
         style={{
@@ -30,12 +30,11 @@ const Profile = ({navigation}) => {
         }}>
         <View
           style={{
-            marginLeft: 30,
             width: 200,
             height: 150,
-            marginBottom: 30,
             justifyContent: 'center',
             alignItems: 'center',
+            paddingBottom: 70,
           }}>
           {user?.photo_profile ? (
             <Image source={user?.photo_profile} />
@@ -59,9 +58,9 @@ const Profile = ({navigation}) => {
         style={{
           zIndex: 1,
           position: 'absolute',
-          top: 440,
-          backgroundColor: '#dcdde1',
-          width: 420,
+          top: 330,
+          backgroundColor: 'white',
+          width: 350,
           height: 530,
           borderTopEndRadius: 30,
           borderTopStartRadius: 30,
@@ -69,7 +68,7 @@ const Profile = ({navigation}) => {
         <TouchableOpacity
           onPress={() => navigation.navigate('EditUser')}
           style={{
-            paddingHorizontal: 30,
+            paddingHorizontal: 20,
             paddingVertical: 30,
             flexDirection: 'row',
             alignItems: 'center',
@@ -83,6 +82,7 @@ const Profile = ({navigation}) => {
               fontSize: 20,
               fontWeight: '500',
               marginRight: 170,
+              paddingLeft: 10,
             }}>
             Edit Profile
           </Text>
@@ -91,7 +91,7 @@ const Profile = ({navigation}) => {
         <TouchableOpacity
           onPress={() => navigation.push('myRecipe')}
           style={{
-            paddingHorizontal: 30,
+            paddingHorizontal: 20,
             paddingVertical: 10,
             flexDirection: 'row',
             alignItems: 'center',
@@ -105,6 +105,7 @@ const Profile = ({navigation}) => {
               fontSize: 20,
               fontWeight: '500',
               marginRight: 170,
+              paddingLeft: 10,
             }}>
             My Recipe
           </Text>
@@ -113,7 +114,7 @@ const Profile = ({navigation}) => {
         <TouchableOpacity
           onPress={() => navigation.push('saveRecipe')}
           style={{
-            paddingHorizontal: 30,
+            paddingHorizontal: 20,
             paddingVertical: 30,
             flexDirection: 'row',
             alignItems: 'center',
@@ -127,6 +128,7 @@ const Profile = ({navigation}) => {
               fontSize: 20,
               fontWeight: '500',
               marginRight: 145,
+              paddingLeft: 10,
             }}>
             Saved Recipe
           </Text>
@@ -135,7 +137,7 @@ const Profile = ({navigation}) => {
         <TouchableOpacity
           onPress={() => navigation.push('saveRecipe')}
           style={{
-            paddingHorizontal: 30,
+            paddingHorizontal: 20,
             paddingVertical: 10,
             flexDirection: 'row',
             alignItems: 'center',
@@ -148,6 +150,7 @@ const Profile = ({navigation}) => {
               fontSize: 20,
               fontWeight: '500',
               marginRight: 170,
+              paddingLeft: 10,
             }}>
             Edit Profile
           </Text>
@@ -156,7 +159,7 @@ const Profile = ({navigation}) => {
         <TouchableOpacity
           onPress={() => dispatch(authLogout())}
           style={{
-            paddingHorizontal: 30,
+            paddingHorizontal: 20,
             paddingVertical: 30,
             flexDirection: 'row',
             alignItems: 'center',
@@ -169,6 +172,7 @@ const Profile = ({navigation}) => {
               fontSize: 20,
               fontWeight: '500',
               marginRight: 200,
+              paddingLeft: 10,
             }}>
             Logout
           </Text>

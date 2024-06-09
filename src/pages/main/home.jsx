@@ -126,7 +126,7 @@ const HomePage = ({navigation}) => {
   );
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <StatusBar
         translucent
         backgroundColor={'transparent'}
@@ -136,23 +136,31 @@ const HomePage = ({navigation}) => {
         <View
           style={{
             flexDirection: 'row',
-            backgroundColor: '#EFEFEF',
+            backgroundColor: 'white',
             alignItems: 'center',
-            justifyContent: 'center',
             borderRadius: 10,
             height: 50,
           }}>
-          <Icon name="search" style={{fontSize: 25, color: '#C4C4C4'}} />
+          <Icon
+            name="search"
+            style={{fontSize: 25, color: '#C4C4C4', paddingLeft: 12}}
+          />
           <TextInput
-            style={styles.input}
+            style={{
+              width: 200,
+              color: 'black',
+              borderRadius: 5,
+              paddingHorizontal: 15,
+              height: 40,
+            }}
             placeholder="Search Pasta, Bread, etc"
           />
         </View>
       </View>
       <View>
-        <View style={{marginHorizontal: 30}}>
-          <Text style={{fontSize: 25, fontWeight: 400}}>Popular Recipes</Text>
-          <Text style={{fontSize: 20, fontWeight: 800}}>Popular check</Text>
+        <View style={{marginHorizontal: 10}}>
+          <Text style={{fontSize: 20, fontWeight: 400}}>Popular Recipes</Text>
+          <Text style={{fontSize: 16, fontWeight: 800}}>Popular check</Text>
         </View>
         <ScrollView
           horizontal
@@ -193,13 +201,13 @@ const HomePage = ({navigation}) => {
         <View
           style={{
             flexDirection: 'row',
-            marginHorizontal: 30,
+            marginHorizontal: 15,
             marginVertical: 20,
             justifyContent: 'space-between',
             alignItems: 'center',
           }}>
-          <Text style={{fontSize: 25, fontWeight: 400}}>New Recipes</Text>
-          <Text style={{fontSize: 20, fontWeight: 400, color: 'blue'}}>
+          <Text style={{fontSize: 20, fontWeight: 400}}>New Recipes</Text>
+          <Text style={{fontSize: 15, fontWeight: 400, color: 'blue'}}>
             More info
           </Text>
         </View>
@@ -207,7 +215,7 @@ const HomePage = ({navigation}) => {
           onPress={() => navigation.navigate('DetailPopular')}
           style={{
             height: 110,
-            marginHorizontal: 30,
+            marginHorizontal: 10,
             flexDirection: 'row',
             justifyContent: 'space-between',
           }}>
@@ -217,13 +225,13 @@ const HomePage = ({navigation}) => {
               width: 80,
               height: 110,
               alignItems: 'center',
-              justifyContent: 'space-between',
+              justifyContent: 'space-evenly',
             }}>
             <View
               style={{
                 backgroundColor: '#57CE96',
-                width: 80,
-                height: 80,
+                width: 70,
+                height: 70,
                 alignItems: 'center',
                 justifyContent: 'center',
                 borderRadius: 20,
@@ -240,13 +248,13 @@ const HomePage = ({navigation}) => {
               width: 80,
               height: 110,
               alignItems: 'center',
-              justifyContent: 'space-between',
+              justifyContent: 'space-evenly',
             }}>
             <View
               style={{
                 backgroundColor: '#FDE901',
-                width: 80,
-                height: 80,
+                width: 70,
+                height: 70,
                 alignItems: 'center',
                 justifyContent: 'center',
                 borderRadius: 20,
@@ -263,13 +271,13 @@ const HomePage = ({navigation}) => {
               width: 80,
               height: 110,
               alignItems: 'center',
-              justifyContent: 'space-between',
+              justifyContent: 'space-evenly',
             }}>
             <View
               style={{
                 backgroundColor: 'black',
-                width: 80,
-                height: 80,
+                width: 70,
+                height: 70,
                 alignItems: 'center',
                 justifyContent: 'center',
                 borderRadius: 20,
@@ -286,13 +294,13 @@ const HomePage = ({navigation}) => {
               width: 80,
               height: 110,
               alignItems: 'center',
-              justifyContent: 'space-between',
+              justifyContent: 'space-evenly',
             }}>
             <View
               style={{
                 backgroundColor: '#FDE901',
-                width: 80,
-                height: 80,
+                width: 70,
+                height: 70,
                 alignItems: 'center',
                 justifyContent: 'center',
                 borderRadius: 20,
@@ -307,8 +315,8 @@ const HomePage = ({navigation}) => {
       </View>
 
       <View style={{marginTop: 25}}>
-        <View style={{marginHorizontal: 30}}>
-          <Text style={{fontSize: 25, fontWeight: 400}}>Popular Recipes</Text>
+        <View style={{marginHorizontal: 15}}>
+          <Text style={{fontSize: 20, fontWeight: 400}}>Popular Recipes</Text>
         </View>
         <View style={styles.cardPopular}>
           <FlatList
@@ -321,7 +329,7 @@ const HomePage = ({navigation}) => {
           />
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 

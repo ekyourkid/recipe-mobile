@@ -32,7 +32,7 @@ const DetailIngredients = ({route, navigation}) => {
 
   return (
     <MenuProvider>
-      <View style={{backgroundColor: 'red'}}>
+      <View style={{backgroundColor: 'white'}}>
         <StatusBar
           translucent
           backgroundColor={'transparent'}
@@ -45,7 +45,7 @@ const DetailIngredients = ({route, navigation}) => {
             source={{uri: recipeDetail?.photo}}
             resizeMode="cover"
             style={{
-              width: 450,
+              width: 360,
               height: 450,
               flexDirection: 'row',
               alignItems: 'flex-end',
@@ -55,14 +55,31 @@ const DetailIngredients = ({route, navigation}) => {
               style={{
                 marginLeft: 30,
                 width: 200,
-                height: 150,
-                marginBottom: 30,
+                height: 390,
+                justifyContent: 'space-between',
               }}>
-              <Text style={{fontSize: 35, fontWeight: 700, color: 'white'}}>
+              <TouchableOpacity
+                onPress={() => navigation.goBack()}
+                style={{
+                  width: 40,
+                  height: 40,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  borderRadius: 8,
+                }}>
+                <Icon
+                  name="chevron-left"
+                  style={{fontSize: 25, color: 'white', fontSize: 35}}
+                />
+              </TouchableOpacity>
+              <Text
+                style={{
+                  fontSize: 50,
+                  fontWeight: 700,
+                  color: 'white',
+                  paddingBottom: 40,
+                }}>
                 {recipeDetail?.title}
-              </Text>
-              <Text style={{fontSize: 14, fontWeight: 700, color: '#B0B0B0'}}>
-                {recipeDetail?.category}
               </Text>
             </View>
             <View
@@ -77,11 +94,16 @@ const DetailIngredients = ({route, navigation}) => {
               }}>
               <Menu>
                 <MenuTrigger>
-                  <View>
+                  <View
+                    style={{
+                      backgroundColor: 'grey',
+                      borderRadius: 20,
+                      padding: 5,
+                    }}>
                     <Ionicons
                       name="ellipsis-horizontal-outline"
                       color={'white'}
-                      size={50}
+                      size={30}
                     />
                   </View>
                 </MenuTrigger>
@@ -126,8 +148,8 @@ const DetailIngredients = ({route, navigation}) => {
                 <TouchableOpacity
                   style={{
                     backgroundColor: '#EFC81A',
-                    width: 55,
-                    height: 55,
+                    width: 40,
+                    height: 40,
                     alignItems: 'center',
                     justifyContent: 'center',
                     borderRadius: 30,
@@ -135,15 +157,15 @@ const DetailIngredients = ({route, navigation}) => {
                   }}>
                   <Icon
                     name="bookmark"
-                    style={{fontSize: 25, color: 'white', fontSize: 35}}
+                    style={{fontSize: 20, color: 'white'}}
                   />
                 </TouchableOpacity>
                 <TouchableOpacity
                   style={{
                     backgroundColor: 'white',
                     borderColor: '#EEC302',
-                    width: 55,
-                    height: 55,
+                    width: 40,
+                    height: 40,
                     alignItems: 'center',
                     justifyContent: 'center',
                     borderRadius: 30,
@@ -151,7 +173,7 @@ const DetailIngredients = ({route, navigation}) => {
                   }}>
                   <Icon
                     name="thumbs-up"
-                    style={{fontSize: 25, color: '#EFC81A', fontSize: 35}}
+                    style={{fontSize: 20, color: '#EFC81A'}}
                   />
                 </TouchableOpacity>
               </View>
@@ -163,7 +185,7 @@ const DetailIngredients = ({route, navigation}) => {
               position: 'absolute',
               top: 470,
               backgroundColor: 'white',
-              width: 450,
+              width: 360,
               height: 550,
               borderTopEndRadius: 30,
               borderTopStartRadius: 30,

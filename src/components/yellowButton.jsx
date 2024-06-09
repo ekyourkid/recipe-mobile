@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Button, TouchableOpacity, Text, View} from 'react-native';
+import {StyleSheet, TouchableOpacity, Text, View} from 'react-native';
 
 export default function YellowButton({text, onPress, isDisabled}) {
   return (
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     paddingVertical: 14,
     paddingHorizontal: 10,
     backgroundColor: '#EFC81A',
-    width: 400,
+    width: 300,
   },
   textButton: {
     color: 'white',
